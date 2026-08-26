@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=42", "setuptools_scm", "wheel", "ninja", "cmake>=3.27"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arbol_kd"
+dynamic = ["version"]
+description = "A Python package for KD-trees with an emphasis on performance and usability."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy"]
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov"]
+benchmark = ["pytest-benchmark", "numba", "plotly", "kaleido", "pandas"]
+
+[tool.setuptools]
+include-package-data = true
+packages = ["arbol_kd"]
+package-dir = { "" = "python" }
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "node-and-date"
+
+[tool.mypy]
+exclude = 'setup\.py$'
+python_version = "3.13"
+strict = true
+show_error_codes = true
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = ["arbol_kd"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+xfail_strict = true
+testpaths = ["tests"]
+
+[tool.cibuildwheel]
+test-command = "pytest {project}/tests"
+test-extras = ["test"]
+# Setuptools bug causes collision between pypy and cpython artifacts
+before-build = "rm -rf {project}/build"
+
+[tool.ruff]
+target-version = "py313"
+
+[tool.ruff.lint]
+extend-select = ["B", "I", "PGH", "RUF", "UP"]

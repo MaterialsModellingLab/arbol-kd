@@ -1,0 +1,13 @@
+{
+  "version": 7,
+  "configurePresets": [
+    {
+      "name": "clangd-config",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+      }
+    }
+  ]
+}

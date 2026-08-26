@@ -1,0 +1,6 @@
+include README.md
+include python/arbol_kd/py.typed
+include python/arbol_kd/*.pyi
+include src/*.cc
+include src/*.hh
+include tests/*.py

@@ -1,0 +1,9 @@
+{
+  "python.defaultInterpreterPath": ".venv/bin/python",
+  "clangd.arguments": [
+    "--compile-commands-dir=${workspaceFolder}/build/clangd-config",
+    "--header-insertion=never",
+    "--clang-tidy",
+    "--enable-config"
+  ]
+}
